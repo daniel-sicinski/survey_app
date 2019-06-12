@@ -9,7 +9,8 @@ const User = mongoose.model('user');
 passport.use( new GoogleStrategy({
     clientID: keys.clientID,
     clientSecret: keys.clientSecret,
-    callbackURL: '/auth/google/callback'
+    callbackURL: '/auth/google/callback',
+    proxy: true
 },
     (token, refreshToken, profile, done) => {
         User.findOne({googleId: profile.id})
